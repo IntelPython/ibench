@@ -1,0 +1,60 @@
+import gc
+import numpy as np
+import sys
+import time
+
+class Bench:
+    _dtype = np.double
+
+    def __init__(self, cmd):
+        self.name = self.__class__.__name__
+        self._cmd = cmd
+
+    def _log(self, message):
+        if self._cmd.args.quiet:
+            return
+        print('%s: %s' % (self.name,message), file=sys.stderr)
+
+    def _run(self, n):
+        self._make_args(n)
+
+        gcold = gc.isenabled()
+        gc.disable()
+
+        times = []
+        for i in range(self._cmd.args.runs):
+            t_start = time.time()
+            self._compute()
+            elapsed = time.time() - t_start
+            times.append(elapsed)
+
+        if gcold:
+            gc.enable()
+
+        return times
+
+    def measure(self, n):
+        self._log('')
+        self._log('  N = %d' % n)
+
+        times = self._run(n)
+
+        ops = self._ops(n)
+        for elapsed in times:
+            self._log('  elapsed %f gflops %f' % (elapsed,ops/elapsed))
+                    
+        self._summarize(n, times)
+
+    def _summarize(self, n, times):
+        t = np.asarray(times)
+        median = np.median(t)
+        ops = self._ops(n)
+        self._log('  gflops %f' % (ops/median))
+        self._cmd.results['runs'].append({'name': self.name,
+                                         'N': n,
+                                         'gflops': ops/median,
+                                         'ops': ops,
+                                         'times': times,
+                                         'stats': {'min': np.amin(t),  
+                                                   'max': np.max(t),  
+                                                   'median': median}})

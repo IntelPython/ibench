@@ -1,0 +1,15 @@
+import sys
+
+class Cmd:
+    def execute():
+        pass
+
+    def parse_args():
+        pass
+
+    def _cmd_error(self,message):
+        print('error: %s' % message, file=sys.stderr)
+        sys.exit(1)
+
+
+        
