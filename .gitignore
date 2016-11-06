@@ -4,3 +4,4 @@
 # python
 __pycache__
 *.egg-info
+*.pyc

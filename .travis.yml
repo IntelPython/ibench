@@ -1,0 +1,12 @@
+language: python
+
+python:
+	- 3.5
+
+install: 
+	- pip install --upgrade pip
+	- pip install -r requirements.txt
+	- pip install -e .
+
+script:
+	- python -m pytest
