@@ -20,5 +20,3 @@ class Inv(Bench):
 
     def _compute(self):
         scipy.linalg.inv(self._A, overwrite_a=True, check_finite=False)
-
-ibench.benchmark_map['inv'] = globals()['Inv']

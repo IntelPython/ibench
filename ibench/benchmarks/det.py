@@ -14,5 +14,3 @@ class Det(Bench):
 
     def _compute(self):
         scipy.linalg.det(self._A, overwrite_a=True, check_finite=False)
-
-ibench.benchmark_map['det'] = globals()['Det']

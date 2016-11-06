@@ -14,5 +14,3 @@ class SVD(Bench):
 
     def _compute(self):
         scipy.linalg.svd(self._A, overwrite_a=True, check_finite=False, full_matrices=False)
-
-ibench.benchmark_map['svd'] = globals()['SVD']

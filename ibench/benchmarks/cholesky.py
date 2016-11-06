@@ -15,5 +15,3 @@ class Cholesky(Bench):
 
     def _compute(self):
         scipy.linalg.cholesky(self._A, lower=False, overwrite_a=True, check_finite=False)
-
-ibench.benchmark_map['cholesky'] = globals()['Cholesky']

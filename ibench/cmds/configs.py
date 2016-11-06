@@ -1,14 +1,20 @@
 import argparse
 
-import ibench
+
 from ibench.cmds.cmd import Cmd
+
+from ibench.configs.direct import Direct
+
+configs = {
+    'direct': Direct
+}
 
 class Configs(Cmd):
 
     def __init__(self, arglist):
         self._parse_args(arglist)
         for config_name in self.args.run:
-            config = ibench.config_map[config_name](self)
+            config = configs[config_name](self)
             for threads in self._threads:
                 config.run(threads)
 
@@ -29,7 +35,7 @@ class Configs(Cmd):
                             help="Logging")
         parser.add_argument('--run', 
                             default=[], 
-                            choices=ibench.config_map.keys(),
+                            choices=configs.keys(),
                             nargs='+', 
                             help='Configs to run')
         parser.add_argument('--threads', 
@@ -52,5 +58,3 @@ class Configs(Cmd):
             self._threads = [1,32]
         elif self.args.cpu == 'phi':
             self._threads = [1,64]
-
-ibench.cmd_map['configs'] = globals()['Configs']

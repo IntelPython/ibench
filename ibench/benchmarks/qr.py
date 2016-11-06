@@ -14,5 +14,3 @@ class QR(Bench):
 
     def _compute(self):
         scipy.linalg.qr(self._A, overwrite_a=True, check_finite=False, mode='raw')
-
-ibench.benchmark_map['qr'] = globals()['QR']

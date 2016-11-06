@@ -22,5 +22,3 @@ class FFT(Bench):
     def _compute(self):
         for i in range(self._runs):
             scipy.fftpack.fft(self._A, overwrite_x = True)
-
-ibench.benchmark_map['fft'] = globals()['FFT']

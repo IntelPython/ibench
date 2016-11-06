@@ -16,5 +16,3 @@ class Dot(Bench):
 
     def _compute(self):
         self._A.dot(self._B, out=self._C)
-
-ibench.benchmark_map['dot'] = globals()['Dot']

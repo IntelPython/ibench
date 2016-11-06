@@ -13,5 +13,3 @@ class LU(Bench):
 
     def _compute(self):
         scipy.linalg.lu(a=self._A, overwrite_a=True, check_finite=False)
-
-ibench.benchmark_map['lu'] = globals()['LU']

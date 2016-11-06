@@ -7,8 +7,27 @@ import subprocess
 import sys
 import time
 
-import ibench
+from ibench.benchmarks.cholesky import Cholesky
+from ibench.benchmarks.det import Det
+from ibench.benchmarks.dot import Dot
+from ibench.benchmarks.fft import FFT
+from ibench.benchmarks.inv import Inv
+from ibench.benchmarks.lu import LU
+from ibench.benchmarks.qr import QR
+from ibench.benchmarks.svd import SVD
+
 from ibench.cmds.cmd import Cmd
+
+benchmarks = {
+    'cholesky': Cholesky,
+    'det': Det,
+    'dot': Dot,
+    'fft': FFT,
+    'inv': Inv,
+    'lu': LU,
+    'qr': QR,
+    'svd': SVD
+}
 
 def capture_multiline_output(command):
     try:
@@ -25,7 +44,7 @@ class Run(Cmd):
         self._parse_args(arglist)
         self._add_configuration()
         for bench_name in self._bmarks:
-            bench = ibench.benchmark_map[bench_name](self)
+            bench = benchmarks[bench_name](self)
             if bench_name in self._sizes:
                 n = self._sizes[bench_name]
             else:
@@ -39,8 +58,8 @@ class Run(Cmd):
         self._sizes = {}
         for bs in self.args.benchmarks if self.args.benchmarks else default_bench:
             b = bs.split(':')
-            if b[0] not in ibench.benchmark_map.keys():
-                self._cmd_error('Unknown benchmark: %s. Choices are: %s' % (b[0],','.join(ibench.benchmark_map.keys())))
+            if b[0] not in benchmarks.keys():
+                self._cmd_error('Unknown benchmark: %s. Choices are: %s' % (b[0],','.join(benchmarks.keys())))
             self._bmarks.append(b[0])
             # process arguments for a size
             if len(b) == 1:
@@ -100,5 +119,3 @@ class Run(Cmd):
         json.dump(self.results,fh,indent=2)
         if filename:
             fh.close()
-
-ibench.cmd_map['run'] = globals()['Run']

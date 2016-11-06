@@ -1,8 +1,13 @@
 import argparse
 import sys
 
-import ibench.cmds.configs
-import ibench.cmds.run
+from ibench.cmds.run import Run
+from ibench.cmds.configs import Configs
+
+cmds = {
+    'run': Run,
+    'configs': Configs
+}
 
 def parse_bench(bench_strings):
     '''Change from list of bench:n to list of (bench,n)'''
@@ -15,9 +20,10 @@ def parse_bench(bench_strings):
 def parse_args():
     parser = argparse.ArgumentParser("ibench")
     parser.add_argument('cmd', 
-                        choices=ibench.cmd_map.keys(),
+                        choices=cmds.keys(),
                         help='cmd to execute')
     return parser.parse_args(sys.argv[1:2])
 
+
 args = parse_args()
-ibench.cmd_map[args.cmd](sys.argv[2:])
+cmds[args.cmd](sys.argv[2:])
