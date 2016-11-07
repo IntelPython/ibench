@@ -4,25 +4,30 @@ import argparse
 from ibench.cmds.cmd import Cmd
 
 from ibench.configs.direct import Direct
+from ibench.configs.pip import Pip
 
 configs = {
-    'direct': Direct
+    'direct': Direct,
+    'pip': Pip
 }
 
 class Configs(Cmd):
 
     def __init__(self, arglist):
         self._parse_args(arglist)
+        for config_name in self.args.build:
+            config = configs[config_name](self)
+            config.build()
         for config_name in self.args.run:
             config = configs[config_name](self)
             for threads in self._threads:
                 config.run(threads)
 
     def _parse_args(self,arglist):
-        parser = argparse.ArgumentParser('ibench')
+        parser = argparse.ArgumentParser('ibench configs')
         parser.add_argument('--cpu', 
                             choices=['xeon','phi'],
-                            required=True,
+                            default='xeon',
                             help='cpu executing the benchmarks')
         parser.add_argument('--dry_run', 
                             default=False, 
@@ -33,6 +38,11 @@ class Configs(Cmd):
                             default=False, 
                             action='store_true', 
                             help="Logging")
+        parser.add_argument('--build', 
+                            default=[], 
+                            choices=configs.keys(),
+                            nargs='+', 
+                            help='Configs to build')
         parser.add_argument('--run', 
                             default=[], 
                             choices=configs.keys(),

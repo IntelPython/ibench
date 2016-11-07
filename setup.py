@@ -8,5 +8,5 @@ setup(name='ibench',
       author_email='Robert.S.Cohn@intel.com',
       license='MIT',
       packages=['ibench'],
-      package_data={'ibench': ['Dockerfile.tpl']},
+      package_data={'ibench': ['docker/Dockerfile.tpl']},
       zip_safe=False)

@@ -27,14 +27,18 @@ class Config:
             return
         print('%s: %s' % (self.name,message), file=sys.stderr)
 
+    def build(self):
+        pass
+
     def run(self, threads):
         cmd = ''
         if self._docker:
-            cmd += 'docker run --rm -it %s' % self.docker
-        if threads > 0:
-            cmd += self._add_docker_env('OMP_NUM_THREADS', threads)
-        if self._affinity:
-            cmd += self._add_docker_env('KMP_AFFINITY', self._affinity)
+            cmd += 'docker run'
+            if threads > 0:
+                cmd += self._add_docker_env('OMP_NUM_THREADS', threads)
+            if self._affinity:
+                cmd += self._add_docker_env('KMP_AFFINITY', self._affinity)
+            cmd += ' --rm -it %s' % self._docker
         if self._numactl:
             cmd += ' numactl %s' % self._numactl
         cmd += ' %s' % self._python_path

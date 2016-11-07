@@ -83,7 +83,7 @@ class Run(Cmd):
 
     def _parse_args(self, arglist):
         default_bench = ['dot']
-        parser = argparse.ArgumentParser('ibench')
+        parser = argparse.ArgumentParser('ibench run')
         parser.add_argument('-b','--benchmarks', 
                             default=None, 
                             nargs='+', 
