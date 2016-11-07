@@ -29,6 +29,11 @@ benchmarks = {
     'svd': SVD
 }
 
+benchmark_groups = {
+    'linalg': ['cholesky', 'det', 'dot', 'inv', 'lu', 'qr', 'svd'],
+    'all': list(benchmarks.keys())
+}
+
 def capture_multiline_output(command):
     try:
         return str(subprocess.check_output(command,shell=True)).split('\\n')
@@ -58,17 +63,23 @@ class Run(Cmd):
         self._sizes = {}
         for bs in self.args.benchmarks if self.args.benchmarks else default_bench:
             b = bs.split(':')
-            if b[0] not in benchmarks.keys():
-                self._cmd_error('Unknown benchmark: %s. Choices are: %s' % (b[0],','.join(benchmarks.keys())))
-            self._bmarks.append(b[0])
+            blist = list(benchmarks.keys()) + list(benchmark_groups.keys())
+            if b[0] not in blist:
+                self._cmd_error('Unknown benchmark: %s. Choices are: %s' % (b[0],','.join(blist)))
             # process arguments for a size
             if len(b) == 1:
                 if self.args.quick:
-                    self._sizes[b[0]] = 8
+                    size = 2
             elif len(b) == 2:
-                self._sizes[b[0]] = int(b[1])
+                size = int(b[1])
             else:
                 self._cmd_error('invalid benchmark spec: %s' % bs)
+
+            # expand groups
+            group = benchmark_groups[b[0]] if b[0] in benchmark_groups else [b[0]]
+            self._bmarks.extend(group)
+            for bench in group:
+                self._sizes[bench] = size
 
     def _parse_args(self, arglist):
         default_bench = ['dot']
