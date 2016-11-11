@@ -1,9 +1,10 @@
 {% if os_name == "centos" %}
 FROM centos:7
-RUN yum install -y \
+
 
 {% elif os_name == "ubuntu" %}
 FROM ubuntu:16.04
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt install -y \
     libatlas3-base \
     libblas3 \
@@ -12,10 +13,10 @@ RUN apt-get update && apt install -y \
     numactl \
     python \
     python-pip \
+    unzip \
+    wget \
     && pip install --upgrade pip
 {% endif %}
-WORKDIR /benchdata
-
 
 {% if config == "pip" %}
 
@@ -38,6 +39,12 @@ RUN update-alternatives --set libblas.so.3 /usr/lib/libblas/libblas.so.3 \
     && update-alternatives --set liblapack.so.3 /usr/lib/lapack/liblapack.so.3
 {% endif %}
 {% endif %}
+
+RUN wget --quiet https://github.com/rscohn2/ibench/archive/master.zip \
+    && pip install jinja2 \
+    && unzip master.zip \
+    && pip install -e ibench-master
+
 
 MAINTAINER Robert Cohn <Robert.S.Cohn@intel.com>
 LABEL org.label-schema.build-date="{{build_date}}" \

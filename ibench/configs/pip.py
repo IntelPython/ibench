@@ -1,5 +1,3 @@
-import sys
-
 from  ibench.configs.config import Config
 import ibench.docker.build as dbuild
 

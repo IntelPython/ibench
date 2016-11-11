@@ -8,5 +8,6 @@ setup(name='ibench',
       author_email='Robert.S.Cohn@intel.com',
       license='MIT',
       packages=['ibench'],
+      install_requires['jinja2']
       package_data={'ibench': ['docker/Dockerfile.tpl']},
       zip_safe=False)

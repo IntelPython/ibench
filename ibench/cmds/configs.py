@@ -2,14 +2,8 @@ import argparse
 
 
 from ibench.cmds.cmd import Cmd
+from ibench.configs import configs
 
-from ibench.configs.direct import Direct
-from ibench.configs.pip import Pip
-
-configs = {
-    'direct': Direct,
-    'pip': Pip
-}
 
 class Configs(Cmd):
 
