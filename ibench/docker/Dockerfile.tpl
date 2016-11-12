@@ -41,7 +41,6 @@ RUN update-alternatives --set libblas.so.3 /usr/lib/libblas/libblas.so.3 \
 {% endif %}
 
 RUN wget --quiet https://github.com/rscohn2/ibench/archive/master.zip \
-    && pip install jinja2 \
     && unzip master.zip \
     && pip install -e ibench-master
 

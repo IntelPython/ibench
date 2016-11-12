@@ -1,4 +1,1 @@
-jinja2
-numpy
-scipy
 pytest
