@@ -37,13 +37,13 @@ class Config:
         if self._docker:
             cmd += 'docker run'
             if self._cmd.args.editable:
-                cmd += ' -v %s:/ibench-master' % os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+                cmd += ' -v %s:/ibench-master' % os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
         if threads > 0:
             cmd += self._add_docker_env('OMP_NUM_THREADS', threads)
         if self._affinity:
             cmd += self._add_docker_env('KMP_AFFINITY', self._affinity)
         if self._docker:
-            cmd += ' --rm -it %s' % self._docker
+            cmd += ' --rm -t %s' % self._docker
         if self._numactl:
             cmd += ' numactl %s' % self._numactl
         cmd += ' %s' % self._python_path

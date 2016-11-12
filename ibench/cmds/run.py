@@ -13,7 +13,7 @@ from ibench.cmds.cmd import Cmd
 
 def capture_multiline_output(command):
     try:
-        return str(subprocess.check_output(command,shell=True)).split('\\n')
+        return str(subprocess.check_output(command,shell=True,stderr=subprocess.STDOUT)).split('\\n')
     except:
         return ''
 
