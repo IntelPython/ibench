@@ -35,6 +35,11 @@ class Run(Cmd):
             del bench
         self._write_output()
 
+    def _load_plugins(self):
+        '''Load plugins by importing, they self-register'''
+        for plugin in self.args.plugins:
+            __import__(plugin)
+
     def _parse_bench(self,default_bench):
         self._bmarks = []
         self._sizes = {}
@@ -44,6 +49,7 @@ class Run(Cmd):
             if b[0] not in blist:
                 self._cmd_error('Unknown benchmark: %s. Choices are: %s' % (b[0],','.join(blist)))
             # process arguments for a size
+            size = None
             if len(b) == 1:
                 if self.args.quick:
                     size = 2
@@ -56,10 +62,11 @@ class Run(Cmd):
             group = benchmark_groups[b[0]] if b[0] in benchmark_groups else [b[0]]
             self._bmarks.extend(group)
             for bench in group:
-                self._sizes[bench] = size
+                if size:
+                    self._sizes[bench] = size
 
     def _parse_args(self, arglist):
-        default_bench = ['dot']
+        default_bench = ['dot:4']
         parser = argparse.ArgumentParser('ibench run')
         parser.add_argument('-b','--benchmarks', 
                             default=None, 
@@ -70,6 +77,10 @@ class Run(Cmd):
         parser.add_argument('--name', 
                             default='noname', 
                             help='Descriptive name of run to include in results file')
+        parser.add_argument('-p','--plugins', 
+                            default=[],
+                            nargs='+', 
+                            help='1 or more plugins')
         parser.add_argument('--quick', 
                             default=False, 
                             action='store_true', 
@@ -81,6 +92,7 @@ class Run(Cmd):
                             help="Logging")
         parser.add_argument('--runs', default=3, type=int, help='Number of runs')
         self.args = parser.parse_args(arglist)
+        self._load_plugins()
         self._parse_bench(default_bench)
         
     def _set_from_environ(self, key):
