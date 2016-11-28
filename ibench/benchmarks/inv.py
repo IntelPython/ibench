@@ -5,7 +5,7 @@ import ibench
 from ibench.benchmarks.bench import Bench
 
 class Inv(Bench):
-    size = 20000
+    sizes = {'large': 25000, 'small': 10000, 'test': 2}
 
     def _ops(self, n):
         # scipy is getrf getri

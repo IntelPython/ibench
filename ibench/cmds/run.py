@@ -27,10 +27,7 @@ class Run(Cmd):
         self._add_configuration()
         for bench_name in self._bmarks:
             bench = benchmarks[bench_name](self)
-            if bench_name in self._sizes:
-                n = self._sizes[bench_name]
-            else:
-                n = bench.size
+            n = bench.sizes[self.args.size]
             bench.measure(n)
             del bench
         self._write_output()
@@ -42,36 +39,18 @@ class Run(Cmd):
 
     def _parse_bench(self,default_bench):
         self._bmarks = []
-        self._sizes = {}
         for bs in self.args.benchmarks if self.args.benchmarks else default_bench:
-            b = bs.split(':')
-            blist = list(benchmarks.keys()) + list(benchmark_groups.keys())
-            if b[0] not in blist:
-                self._cmd_error('Unknown benchmark: %s. Choices are: %s' % (b[0],','.join(blist)))
-            # process arguments for a size
-            size = None
-            if len(b) == 1:
-                if self.args.quick:
-                    size = 2
-            elif len(b) == 2:
-                size = int(b[1])
-            else:
-                self._cmd_error('invalid benchmark spec: %s' % bs)
-
             # expand groups
-            group = benchmark_groups[b[0]] if b[0] in benchmark_groups else [b[0]]
+            group = benchmark_groups[bs] if bs in benchmark_groups else [bs]
             self._bmarks.extend(group)
-            for bench in group:
-                if size:
-                    self._sizes[bench] = size
 
     def _parse_args(self, arglist):
-        default_bench = ['dot:4']
+        default_bench = ['dot']
         parser = argparse.ArgumentParser('ibench run')
         parser.add_argument('-b','--benchmarks', 
-                            default=None, 
+                            choices = list(benchmarks.keys()) + list(benchmark_groups.keys()),
                             nargs='+', 
-                            help='Benchmark to run. Default %s' % default_bench)
+                            help='Benchmarks to run')
         parser.add_argument('--file', 
                             help='Write results to <file> instead of stdout')
         parser.add_argument('--name', 
@@ -81,10 +60,10 @@ class Run(Cmd):
                             default=[],
                             nargs='+', 
                             help='1 or more plugins')
-        parser.add_argument('--quick', 
-                            default=False, 
-                            action='store_true', 
-                            help="Quick run by using small sizes")
+        parser.add_argument('--size', 
+                            choices=['large','small','test'],
+                            default='test',
+                            help='Size of workload to run. In general, use large for multicore, small for single thread, and test for debugging')
         parser.add_argument('-q', 
                             '--quiet', 
                             default=False, 

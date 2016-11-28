@@ -6,6 +6,7 @@ import ibench
 from ibench.benchmarks.bench import Bench
 
 class FFT(Bench):
+    sizes = {'large': 520000, 'small': 520000, 'test': 100}
     # If you change the value of runs, change native.cpp as well
     _runs = 1000
 

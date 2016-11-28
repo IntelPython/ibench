@@ -5,6 +5,7 @@ import ibench
 from ibench.benchmarks.bench import Bench
 
 class Cholesky(Bench):
+    sizes = {'large': 40000, 'small': 10000, 'test': 2}
 
     def _ops(self, n):
         return n*n*n/3.0*1e-9
