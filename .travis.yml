@@ -19,4 +19,4 @@ install:
         - pip install -e .
 
 script:
-        - python -m pytest
+        - python -m pytest -s
