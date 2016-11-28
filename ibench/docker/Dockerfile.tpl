@@ -1,6 +1,4 @@
 {% if os_name == "centos" %}
-FROM centos:7
-
 
 {% elif os_name == "ubuntu" %}
 FROM ubuntu:16.04
@@ -18,15 +16,38 @@ RUN apt-get update && apt install -y \
     && pip install --upgrade pip
 {% endif %}
 
-{% if config == "pip" %}
+ARG MINICONDA_PACKAGE=Miniconda3-4.1.11-Linux-x86_64.sh
 
-RUN pip install numpy scipy
+RUN wget --quiet https://github.com/rscohn2/ibench/archive/master.zip \
+    && unzip master.zip \
+    && rm master.zip
+
+{% if config == "shared" %}
+
+RUN pip install numpy scipy \
+    && pip install -e ibench-master
+
+# create all the anaconda installations
+RUN wget -q https://repo.continuum.io/miniconda/$MINICONDA_PACKAGE
+RUN chmod +x $MINICONDA_PACKAGE
+ARG MINICONDA=/miniconda3
+RUN ./$MINICONDA_PACKAGE -b -p $MINICONDA
+RUN rm $MINICONDA_PACKAGE \
+    && $MINICONDA/bin/conda update -y -q conda
+ENV ACCEPT_INTEL_PYTHON_EULA=yes
+RUN $MINICONDA/bin/conda create -y -q -n idp2017.0.0 -c intel intelpython3_core=2017.0.0
+RUN $MINICONDA/envs/idp2017.0.0/bin/pip install -e ibench-master
+RUN $MINICONDA/bin/conda create -y -q -n idp2017.0.1 -c intel intelpython3_core=2017.0.1
+RUN $MINICONDA/envs/idp2017.0.1/bin/pip install -e ibench-master \
+    && $MINICONDA/bin/conda create -y -q -n anaconda scipy \
+    && $MINICONDA/envs/anaconda/bin/pip install -e ibench-master
 
 {% else %}
 
 RUN apt-get install -y \
     python3-numpy \
-    python3-scipy
+    python3-scipy \
+    pip install -e ibench-master
 
 {% if config == "sys_atlas" %}
 RUN update-alternatives --set libblas.so.3 /usr/lib/atlas-base/atlas/libblas.so.3 \
@@ -39,11 +60,6 @@ RUN update-alternatives --set libblas.so.3 /usr/lib/libblas/libblas.so.3 \
     && update-alternatives --set liblapack.so.3 /usr/lib/lapack/liblapack.so.3
 {% endif %}
 {% endif %}
-
-RUN wget --quiet https://github.com/rscohn2/ibench/archive/master.zip \
-    && unzip master.zip \
-    && pip install -e ibench-master
-
 
 MAINTAINER Robert Cohn <Robert.S.Cohn@intel.com>
 LABEL org.label-schema.build-date="{{build_date}}" \
