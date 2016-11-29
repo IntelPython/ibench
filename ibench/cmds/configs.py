@@ -46,6 +46,10 @@ class Configs(Cmd):
                             choices=configs.keys(),
                             nargs='+', 
                             help='Configs to run')
+        parser.add_argument('--size', 
+                            default='test',
+                            choices=['auto','small','large','test'],
+                            help='Size of problem. auto adjusts size so test will finish in a few minutes')
         parser.add_argument('--threads', 
                             default=None, 
                             type=int, 

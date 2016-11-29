@@ -1,4 +1,5 @@
 from __future__ import print_function
+import datetime
 import os
 import subprocess
 import sys
@@ -8,6 +9,8 @@ class Config:
     _python_path = '/usr/bin/python'
     _affinity = None
     _numactl = None
+    _mt_size = 'large'
+    _st_size = 'small'
 
     def __init__(self, cmd):
         self.name = self.__class__.__name__
@@ -32,6 +35,11 @@ class Config:
     def build(self):
         pass
 
+    def size(self, threads):
+        if self._cmd.args.size != 'auto':
+            return self._cmd.args.size
+        return self._mt_size if threads > 1 else self._st_size
+
     def run(self, threads):
         cmd = ''
         if self._docker:
@@ -43,13 +51,23 @@ class Config:
         if self._affinity:
             cmd += self._add_docker_env('KMP_AFFINITY', self._affinity)
         if self._docker:
-            cmd += ' --rm -t %s' % self._docker
+            cmd += ' --rm %s' % self._docker
         if self._numactl:
             cmd += ' numactl %s' % self._numactl
         cmd += ' %s' % self._python_path
         cmd += ' -m ibench run'
+        cmd += ' --name %s' % self.name
+        cmd += ' --size %s' % self.size(threads)
         if len(self._cmd.run_args) > 0:
             cmd += '  %s' % ' '.join(self._cmd.run_args)
         self._log(cmd)
         if not self._cmd.args.dry_run:
-            subprocess.check_output(cmd,shell=True)
+            time = datetime.datetime.now()
+            date = time.strftime('%Y-%m-%d-%H-%M-%S')
+            try:
+                os.mkdir('results')
+            except OSError:
+                pass
+            filename = 'results/bench-%s.json' % date
+            with open(filename,'w') as stdoutfp:
+                subprocess.call(cmd,stdout=stdoutfp,shell=True)

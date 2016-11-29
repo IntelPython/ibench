@@ -8,3 +8,5 @@ __pycache__
 .cache
 /.project
 /x
+results
+Dockerfile.ibench.shared.ubuntu
