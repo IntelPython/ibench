@@ -39,16 +39,25 @@ class Run(Cmd):
 
     def _parse_bench(self,default_bench):
         self._bmarks = []
-        for bs in self.args.benchmarks if self.args.benchmarks else default_bench:
+        bstack = self.args.benchmarks if self.args.benchmarks else default_bench
+        for bs in bstack:
             # expand groups
-            group = benchmark_groups[bs] if bs in benchmark_groups else [bs]
-            self._bmarks.extend(group)
+            if bs in benchmark_groups:
+                bstack.extend(benchmark_groups[bs])
+            elif bs in benchmarks:
+                self._bmarks.append(bs)
+            else:
+                print('Unknown benchmark: ',
+                      bs,
+                      ' must be in: ',
+                      list(benchmarks.keys()) + list(benchmark_groups.keys()),
+                      file=sys.stderr)
+                sys.exit(1)
 
     def _parse_args(self, arglist):
         default_bench = ['dot']
         parser = argparse.ArgumentParser('ibench run')
         parser.add_argument('-b','--benchmarks', 
-                            choices = list(benchmarks.keys()) + list(benchmark_groups.keys()),
                             nargs='+', 
                             help='Benchmarks to run')
         parser.add_argument('--file', 
