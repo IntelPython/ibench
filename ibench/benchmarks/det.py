@@ -1,8 +1,7 @@
 import numpy as np
 import scipy
 
-import ibench
-from ibench.benchmarks.bench import Bench
+from .bench import Bench
 
 class Det(Bench):
     sizes = {'large': 30000, 'small': 15000, 'test': 2}

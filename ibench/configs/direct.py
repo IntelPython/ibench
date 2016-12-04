@@ -1,6 +1,6 @@
 import sys
 
-from  ibench.configs.config import Config
+from  .config import Config
 
 class Direct(Config):
     '''Run with same python interpreter as invoked the script'''

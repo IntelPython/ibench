@@ -7,9 +7,9 @@ import subprocess
 import sys
 import time
 
-from ibench.benchmarks import benchmarks
-from ibench.benchmarks import benchmark_groups
-from ibench.cmds.cmd import Cmd
+from ..benchmarks import benchmarks
+from ..benchmarks import benchmark_groups
+from .cmd import Cmd
 
 def capture_multiline_output(command):
     try:

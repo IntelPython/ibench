@@ -1,22 +1,21 @@
-from ibench.benchmarks.cholesky import Cholesky
-from ibench.benchmarks.det import Det
-from ibench.benchmarks.dot import Dot
-from ibench.benchmarks.fft import FFT
-from ibench.benchmarks.inv import Inv
-from ibench.benchmarks.lu import LU
-from ibench.benchmarks.qr import QR
-from ibench.benchmarks.svd import SVD
-
+from . import cholesky
+from . import det
+from . import dot
+from . import fft
+from . import inv
+from . import lu
+from . import qr
+from . import svd
 
 benchmarks = {
-    'cholesky': Cholesky,
-    'det': Det,
-    'dot': Dot,
-    'fft': FFT,
-    'inv': Inv,
-    'lu': LU,
-    'qr': QR,
-    'svd': SVD
+    'cholesky': cholesky.Cholesky,
+    'det': det.Det,
+    'dot': dot.Dot,
+    'fft': fft.FFT,
+    'inv': inv.Inv,
+    'lu': lu.LU,
+    'qr': qr.QR,
+    'svd': svd.SVD
 }
 
 benchmark_groups = {

@@ -1,7 +1,7 @@
-from ibench.cmds.run import Run
-from ibench.cmds.configs import Configs
+from . import run
+from . import configs
 
 cmds = {
-    'run': Run,
-    'configs': Configs
+    'run': run.Run,
+    'configs': configs.Configs
 }

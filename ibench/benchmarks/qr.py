@@ -1,8 +1,7 @@
 import numpy as np
 import scipy
 
-import ibench
-from ibench.benchmarks.bench import Bench
+from .bench import Bench
 
 class QR(Bench):
     sizes = {'large': 10000, 'small': 5000, 'test': 2}

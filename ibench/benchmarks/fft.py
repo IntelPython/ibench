@@ -2,8 +2,7 @@ import math
 import numpy as np
 import scipy.fftpack
 
-import ibench
-from ibench.benchmarks.bench import Bench
+from .bench import Bench
 
 class FFT(Bench):
     sizes = {'large': 520000, 'small': 520000, 'test': 100}

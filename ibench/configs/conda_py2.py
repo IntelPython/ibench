@@ -1,7 +1,7 @@
 import subprocess
 import sys
 
-from  ibench.configs.config import Config
+from  .config import Config
 
 class Conda_py2(Config):
     '''py2 conda environment'''

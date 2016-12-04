@@ -1,8 +1,8 @@
 import argparse
 
 
-from ibench.cmds.cmd import Cmd
-from ibench.configs import configs
+from .cmd import Cmd
+from ..configs import configs
 
 
 class Configs(Cmd):

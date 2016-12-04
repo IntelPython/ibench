@@ -1,8 +1,7 @@
 import numpy as np
 import scipy
 
-import ibench
-from ibench.benchmarks.bench import Bench
+from .bench import Bench
 
 class Inv(Bench):
     sizes = {'large': 25000, 'small': 10000, 'test': 2}

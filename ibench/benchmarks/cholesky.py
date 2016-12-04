@@ -1,8 +1,7 @@
 import numpy as np
 import scipy.linalg
 
-import ibench
-from ibench.benchmarks.bench import Bench
+from .bench import Bench
 
 class Cholesky(Bench):
     sizes = {'large': 40000, 'small': 10000, 'test': 2}

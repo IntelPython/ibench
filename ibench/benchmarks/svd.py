@@ -1,8 +1,7 @@
 import numpy as np
 import scipy.linalg
 
-import ibench
-from ibench.benchmarks.bench import Bench
+from .bench import Bench
 
 class SVD(Bench):
     sizes = {'large': 10000, 'small': 5000, 'test': 2}

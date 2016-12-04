@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from ibench.cmds import cmds
+from .cmds import cmds
 
 def parse_bench(bench_strings):
     '''Change from list of bench:n to list of (bench,n)'''
