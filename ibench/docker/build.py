@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import argparse
 import datetime
 from jinja2 import PackageLoader
