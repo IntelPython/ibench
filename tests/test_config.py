@@ -1,3 +1,4 @@
+from __future__ import print_function
 import subprocess
 
 def test_auto_size():
