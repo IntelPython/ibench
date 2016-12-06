@@ -12,10 +12,10 @@ class Config:
     _mt_size = 'large'
     _st_size = 'small'
 
-    def __init__(self, cmd):
+    def __init__(self, args):
         self.name = self.__class__.__name__
-        self._cmd = cmd
-        if self._cmd.args.cpu == 'xeon':
+        self.args = args
+        if self.args.cpu == 'xeon':
             self._affinity = 'compact'
             self._numactl = '--interleave=all'
 
@@ -28,7 +28,7 @@ class Config:
         return c
 
     def _log(self, message):
-        if self._cmd.args.quiet:
+        if self.args.quiet:
             return
         print('%s: %s' % (self.name,message), file=sys.stderr)
 
@@ -36,15 +36,15 @@ class Config:
         pass
 
     def size(self, threads):
-        if self._cmd.args.size != 'auto':
-            return self._cmd.args.size
+        if self.args.size != 'auto':
+            return self.args.size
         return self._mt_size if threads > 1 else self._st_size
 
     def run(self, threads):
         cmd = ''
         if self._docker:
             cmd += 'docker run'
-            if self._cmd.args.editable:
+            if self.args.editable:
                 cmd += ' -v %s:/ibench-master' % os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
         if threads > 0:
             cmd += self._add_docker_env('OMP_NUM_THREADS', threads)
@@ -58,10 +58,9 @@ class Config:
         cmd += ' -m ibench run'
         cmd += ' --name %s' % self.name
         cmd += ' --size %s' % self.size(threads)
-        if len(self._cmd.run_args) > 0:
-            cmd += '  %s' % ' '.join(self._cmd.run_args)
+        cmd += '  %s' % self.args.run_args
         self._log(cmd)
-        if not self._cmd.args.dry_run:
+        if not self.args.dry_run:
             time = datetime.datetime.now()
             date = time.strftime('%Y-%m-%d-%H-%M-%S')
             try:
