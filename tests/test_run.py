@@ -1,7 +1,7 @@
 import subprocess
 
 def test_run_plugin():
-    subprocess.check_call('python -m ibench run -p os sys -b cholesky --size test --file foo', shell=True)
+    subprocess.check_call('IBENCH_PLUGINS="os sys" python -m ibench run -b cholesky --size test --file foo', shell=True)
 
 def test_run():
     subprocess.check_call('python -m ibench run', shell=True)
