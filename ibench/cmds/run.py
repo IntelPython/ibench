@@ -23,6 +23,7 @@ def capture_multiline_output(command):
 def add_parser(subparsers):
     parser = subparsers.add_parser('run')
     parser.add_argument('-b','--benchmarks', 
+                        choices=list(benchmarks.keys()) + list(benchmark_groups.keys()),
                         nargs='+', 
                         help='Benchmarks to run')
     parser.add_argument('--file', 
@@ -30,10 +31,6 @@ def add_parser(subparsers):
     parser.add_argument('--name', 
                         default='noname', 
                         help='Descriptive name of run to include in results file')
-    parser.add_argument('-p','--plugins', 
-                        default=[],
-                        nargs='+', 
-                        help='1 or more plugins')
     parser.add_argument('--size', 
                         choices=['large','small','test'],
                         default='test',
@@ -52,7 +49,6 @@ class Run(Cmd):
     def __init__(self, args):
         '''Run a set of benchmarks'''
         self.args = args
-        self._load_plugins()
         self._parse_bench()
         self._add_configuration()
         for bench_name in self._bmarks:
@@ -61,11 +57,6 @@ class Run(Cmd):
             bench.measure(n)
             del bench
         self._write_output()
-
-    def _load_plugins(self):
-        '''Load plugins by importing, they self-register'''
-        for plugin in self.args.plugins:
-            __import__(plugin)
 
     def _parse_bench(self):
         default_bench = ['dot']
