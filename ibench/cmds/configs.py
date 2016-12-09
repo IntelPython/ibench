@@ -44,24 +44,24 @@ def add_parser(subparsers):
                         help='Size of problem. auto adjusts size so test will finish in a few minutes')
     parser.add_argument('--threads', 
                         default=None, 
+                        nargs='+', 
                         type=int, 
                         help="Number of threads to use")
 
 class Configs(Cmd):
 
     def __init__(self, args):
-        self.args = args
-        if self.args.threads:
-            self._threads = [self.args.threads]
-        elif self.args.cpu == 'xeon':
+        if args.threads:
+            self._threads = args.threads
+        elif args.cpu == 'xeon':
             self._threads = [1,32]
-        elif self.args.cpu == 'phi':
+        elif args.cpu == 'phi':
             self._threads = [1,64]
 
-        for config_name in self.args.build:
+        for config_name in args.build:
             config = configs[config_name](args)
             config.build()
-        for config_name in self.args.run:
-            config = configs[config_name](self)
+        for config_name in args.run:
+            config = configs[config_name](args)
             for threads in self._threads:
                 config.run(threads)

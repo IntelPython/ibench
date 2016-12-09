@@ -11,11 +11,11 @@ benchmarks = {
     'cholesky': cholesky.Cholesky,
     'det': det.Det,
     'dot': dot.Dot,
-    'fft': fft.FFT,
+    'fft': fft.Fft,
     'inv': inv.Inv,
-    'lu': lu.LU,
-    'qr': qr.QR,
-    'svd': svd.SVD
+    'lu': lu.Lu,
+    'qr': qr.Qr,
+    'svd': svd.Svd
 }
 
 benchmark_groups = {

@@ -3,7 +3,7 @@ import scipy.linalg
 
 from .bench import Bench
 
-class SVD(Bench):
+class Svd(Bench):
     sizes = {'large': 10000, 'small': 5000, 'test': 2}
 
     def _ops(self, n):

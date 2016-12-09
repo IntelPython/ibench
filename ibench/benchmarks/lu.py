@@ -3,7 +3,7 @@ import scipy
 
 from .bench import Bench
 
-class LU(Bench):
+class Lu(Bench):
     sizes = {'large': 35000, 'small': 20000, 'test': 2}
 
     def _ops(self, n):
