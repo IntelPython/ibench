@@ -1,0 +1,36 @@
+package:
+  name: ibench
+  version: 0.1rc
+
+build:
+  number: 0
+
+source:
+  git_tag: 0.1rc
+  git_url: https://github.com/IntelPython/ibench.git
+
+requirements:
+  build:
+    - cython
+    - jinja2
+    - numpy
+    - python
+    - scipy
+    - setuptools
+  run:
+    - jinja2
+    - python
+    - numpy
+    - scipy
+
+test:
+  source_files:
+    - tests
+  requires:
+    - pytest
+
+about:
+  home: http://github.com/IntelPython/ibench
+  license: MIT
+  licene_file: LICENSE
+  summary: 'Benchmarking for numerical python workloads'
