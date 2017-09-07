@@ -11,9 +11,9 @@ Benchmarks for Intel Distribution for Python
 
 ## Run
         # basic command
-        python -m ibench run -p all --size large --runs 3 --file all.out
+        python -m ibench run -b all --size large --runs 3 --file all.out
         # Use ibench_native plugin to include native versions of the benchmarks. See the ibench_native repository
-        IBENCH_PUGINS=ibench_native python -m ibench run -p dot_native --size large --runs 3 --file all.out
+        IBENCH_PLUGINS=ibench_native python -m ibench run -b dot_native --size large --runs 3 --file all.out
 
 ## Help
         python -m ibench --help
