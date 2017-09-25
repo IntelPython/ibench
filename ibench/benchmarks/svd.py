@@ -4,7 +4,7 @@ import scipy.linalg
 from .bench import Bench
 
 class Svd(Bench):
-    sizes = {'large': 10000, 'small': 5000, 'test': 2}
+    sizes = {'large': 10000, 'small': 5000, 'tiny': 1000, 'test': 2}
 
     def _ops(self, n):
         return (4./3.)*n*n*n*1e-9

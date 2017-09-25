@@ -3,7 +3,7 @@ import numpy as np
 from .bench import Bench
 
 class Dot(Bench):
-    sizes = {'large': 10000, 'small': 5000, 'test': 2}
+    sizes = {'large': 10000, 'small': 5000, 'tiny': 1000, 'test': 2}
 
     def _ops(self, n):
         return 2E-9 * n*n*n

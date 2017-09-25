@@ -4,7 +4,7 @@ import scipy
 from .bench import Bench
 
 class Inv(Bench):
-    sizes = {'large': 25000, 'small': 10000, 'test': 2}
+    sizes = {'large': 25000, 'small': 10000, 'tiny': 2000, 'test': 2}
 
     def _ops(self, n):
         # scipy is getrf getri

@@ -4,7 +4,7 @@ import scipy
 from .bench import Bench
 
 class Det(Bench):
-    sizes = {'large': 30000, 'small': 15000, 'test': 2}
+    sizes = {'large': 30000, 'small': 15000, 'tiny': 5000, 'test': 2}
 
     def _ops(self, n):
         return 2./3.*n*n*n*1e-9

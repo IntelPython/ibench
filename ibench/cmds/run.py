@@ -32,7 +32,7 @@ def add_parser(subparsers):
                         default='noname', 
                         help='Descriptive name of run to include in results file')
     parser.add_argument('--size', 
-                        choices=['large','small','test'],
+                        choices=['large','small', 'tiny', 'test'],
                         default='test',
                         help='Size of workload to run. In general, use large for multicore, small for single thread, and test for debugging')
     parser.add_argument('-q', 

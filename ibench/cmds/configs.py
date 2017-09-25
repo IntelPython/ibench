@@ -12,7 +12,7 @@ def add_parser(subparsers):
                         default='',
                         help='arguments to pass to run command')
     parser.add_argument('--cpu', 
-                        choices=['xeon','phi'],
+                        choices=['xeon','phi','core'],
                         default='xeon',
                         help='cpu executing the benchmarks')
     parser.add_argument('--dry-run', 
@@ -40,7 +40,7 @@ def add_parser(subparsers):
                         help='Configs to run')
     parser.add_argument('--size', 
                         default='test',
-                        choices=['auto','small','large','test'],
+                        choices=['auto','small','large','tiny','test'],
                         help='Size of problem. auto adjusts size so test will finish in a few minutes')
     parser.add_argument('--threads', 
                         default=None, 
@@ -57,6 +57,8 @@ class Configs(Cmd):
             self._threads = [1,32]
         elif args.cpu == 'phi':
             self._threads = [1,64]
+        elif args.cpu == 'core':
+            self._threads = [1,2]
 
         for config_name in args.build:
             config = configs[config_name](args)
