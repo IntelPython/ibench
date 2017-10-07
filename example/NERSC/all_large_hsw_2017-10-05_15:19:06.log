@@ -1,0 +1,203 @@
+{
+  "name": "noname",
+  "date": "2017-10-05-15-19-08",
+  "KMP_AFFINITY": "not set",
+  "OMP_NUM_THREADS": "64",
+  "MKL_NUM_THREADS": "64",
+  "host": "nid02302",
+  "lscpu": [
+    "b'Architecture:          x86_64",
+    "CPU op-mode(s):        32-bit, 64-bit",
+    "Byte Order:            Little Endian",
+    "CPU(s):                64",
+    "On-line CPU(s) list:   0-63",
+    "Thread(s) per core:    2",
+    "Core(s) per socket:    16",
+    "Socket(s):             2",
+    "NUMA node(s):          2",
+    "Vendor ID:             GenuineIntel",
+    "CPU family:            6",
+    "Model:                 63",
+    "Model name:            Intel(R) Xeon(R) CPU E5-2698 v3 @ 2.30GHz",
+    "Stepping:              2",
+    "CPU MHz:               2301.000",
+    "CPU max MHz:           2301.0000",
+    "CPU min MHz:           1200.0000",
+    "BogoMIPS:              4600.01",
+    "Virtualization:        VT-x",
+    "L1d cache:             32K",
+    "L1i cache:             32K",
+    "L2 cache:              256K",
+    "L3 cache:              40960K",
+    "NUMA node0 CPU(s):     0-15,32-47",
+    "NUMA node1 CPU(s):     16-31,48-63",
+    "Flags:                 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm ida arat epb pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm xsaveopt cqm_llc cqm_occup_llc",
+    "'"
+  ],
+  "numactl": [
+    "b'policy: default",
+    "preferred node: current",
+    "physcpubind: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 ",
+    "cpubind: 0 1 ",
+    "nodebind: 0 1 ",
+    "membind: 0 1 ",
+    "'"
+  ],
+  "pip list": "",
+  "conda": [
+    "b'Using Anaconda Cloud api site https://api.anaconda.org",
+    "# packages in environment at /global/homes/k/karenyng/.conda/envs/wrapped_ibench:",
+    "#",
+    "ibench                    0.1rc0                    <pip>",
+    "wrappython                0.1                      py36_0    intel/label/test",
+    "icc_rt                    16.0.3                 intel_14  [intel]  intel",
+    "intelpython               2018.0.0                      3    intel",
+    "mkl                       2018.0.0                intel_4    intel",
+    "numpy                     1.13.1            py36_intel_16  [intel]  intel",
+    "openmp                    2018.0.0                intel_7    intel",
+    "openssl                   1.0.2k                  intel_3  [intel]  intel",
+    "pip                       9.0.1              py36_intel_0  [intel]  intel",
+    "python                    3.6.2                   intel_3  [intel]  intel",
+    "scipy                     0.19.1          np113py36_intel_12  [intel]  intel",
+    "setuptools                27.2.0             py36_intel_0  [intel]  intel",
+    "sqlite                    3.13.0                 intel_15  [intel]  intel",
+    "tcl                       8.6.4                  intel_17  [intel]  intel",
+    "tk                        8.6.4                  intel_26  [intel]  intel",
+    "wheel                     0.29.0             py36_intel_5  [intel]  intel",
+    "xz                        5.2.2                  intel_16  [intel]  intel",
+    "zlib                      1.2.11                  intel_3  [intel]  intel",
+    "Jinja2                    2.9.6                     <pip>",
+    "MarkupSafe                1.0                       <pip>",
+    "'"
+  ],
+  "runs": [
+    {
+      "name": "Cholesky",
+      "N": 40000,
+      "gflops": 818.2352325411528,
+      "ops": 21333.333333333332,
+      "times": [
+        27.218567848205566,
+        26.01661252975464,
+        26.07237195968628
+      ],
+      "stats": {
+        "min": 26.01661252975464,
+        "max": 27.218567848205566,
+        "median": 26.07237195968628
+      }
+    },
+    {
+      "name": "Det",
+      "N": 30000,
+      "gflops": 836.5361126172651,
+      "ops": 18000.0,
+      "times": [
+        22.85654354095459,
+        21.51730179786682,
+        20.409521341323853
+      ],
+      "stats": {
+        "min": 20.409521341323853,
+        "max": 22.85654354095459,
+        "median": 21.51730179786682
+      }
+    },
+    {
+      "name": "Dot",
+      "N": 10000,
+      "gflops": 708.7820672545549,
+      "ops": 2000.0,
+      "times": [
+        4.331636190414429,
+        2.821741819381714,
+        2.362659215927124
+      ],
+      "stats": {
+        "min": 2.362659215927124,
+        "max": 4.331636190414429,
+        "median": 2.821741819381714
+      }
+    },
+    {
+      "name": "Fft",
+      "N": 520000,
+      "gflops": 73.2121673788523,
+      "ops": 49.36919545399541,
+      "times": [
+        0.7137086391448975,
+        0.6683087348937988,
+        0.674330472946167
+      ],
+      "stats": {
+        "min": 0.6683087348937988,
+        "max": 0.7137086391448975,
+        "median": 0.674330472946167
+      }
+    },
+    {
+      "name": "Inv",
+      "N": 25000,
+      "gflops": 509.3463235609542,
+      "ops": 31250.000000000004,
+      "times": [
+        62.58462905883789,
+        60.60858106613159,
+        61.35314726829529
+      ],
+      "stats": {
+        "min": 60.60858106613159,
+        "max": 62.58462905883789,
+        "median": 61.35314726829529
+      }
+    },
+    {
+      "name": "Lu",
+      "N": 35000,
+      "gflops": 584.1145974119669,
+      "ops": 28583.333333333332,
+      "times": [
+        51.80254006385803,
+        48.93446159362793,
+        48.09559917449951
+      ],
+      "stats": {
+        "min": 48.09559917449951,
+        "max": 51.80254006385803,
+        "median": 48.93446159362793
+      }
+    },
+    {
+      "name": "Qr",
+      "N": 10000,
+      "gflops": 357.42132896090624,
+      "ops": 1333.3333333333333,
+      "times": [
+        4.335587978363037,
+        3.730424642562866,
+        3.4494965076446533
+      ],
+      "stats": {
+        "min": 3.4494965076446533,
+        "max": 4.335587978363037,
+        "median": 3.730424642562866
+      }
+    },
+    {
+      "name": "Svd",
+      "N": 10000,
+      "gflops": 10.769750699619244,
+      "ops": 1333.3333333333333,
+      "times": [
+        123.85702681541443,
+        123.803546667099,
+        120.39780640602112
+      ],
+      "stats": {
+        "min": 120.39780640602112,
+        "max": 123.85702681541443,
+        "median": 123.803546667099
+      }
+    }
+  ]
+}
