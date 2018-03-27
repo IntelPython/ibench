@@ -9,6 +9,11 @@ from . import svd
 from . import blacksch
 from . import rng
 from . import lregression
+from . import lregressionfit
+from . import ridge
+from . import ridgefit
+from . import cosine
+from . import corr
 
 benchmarks = {
     'cholesky': cholesky.Cholesky,
@@ -21,11 +26,20 @@ benchmarks = {
     'svd': svd.Svd,
     'blacksch':blacksch.Blacksch,
     'rng':rng.Rng,
-    'lregression':lregression.Lregression
+    'lregression':lregression.Lregression,
+    'lregressionfit': lregressionfit.Lregressionfit,
+    'ridge':ridge.Ridge,
+    'ridgefit':ridgefit.Ridgefit,
+    'cosine':cosine.Cosine,
+    'corr':corr.Corr
 }
 
 benchmark_groups = {
     'linalg': ['cholesky', 'det', 'dot', 'inv', 'lu', 'qr', 'svd'],
     'all': list(benchmarks.keys()),
-    'bench2018': ['fft', 'lu', 'dot', 'cholesky', 'qr', 'blacksch', 'rng', 'lregression']
+    'sklearn': ['lregression', 'lregressionfit', 'ridge', 'ridgefit',
+                'cosine','corr'],
+    'bench2018': ['fft', 'lu', 'dot', 'cholesky', 'qr', 'blacksch',
+                  'rng', 'lregression', 'lregressionfit', 'ridge',
+                  'ridgefit','cosine','corr']
 }
