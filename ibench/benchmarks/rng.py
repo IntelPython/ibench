@@ -9,7 +9,7 @@ except:
     
 class Rng(Bench):
 
-    sizes = {'large': 10000, 'small': 1000, 'tiny': 100, 'test': 2}
+    sizes = {'large': 20000, 'small': 5000, 'tiny': 100, 'test': 2}
 
     def _ops(self, n):
         # TODO: Needs a more accurate count

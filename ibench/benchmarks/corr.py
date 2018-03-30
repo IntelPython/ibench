@@ -14,7 +14,7 @@ class Corr(Bench):
     Benchmark for Correlation Distance from Scikit-learn
     Attempts to utilize parallelism for larger datasets
     """
-    sizes = {'large': 10000, 'small': 5000, 'tiny': 1000, 'test': 10}
+    sizes = {'large': 50000, 'small': 30000, 'tiny': 10000, 'test': 10}
 
     def _ops(self, n):
         return 2E-9 * n

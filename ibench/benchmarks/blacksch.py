@@ -34,7 +34,7 @@ VOLATILITY = 0.2
 TEST_ARRAY_LENGTH = 1024
 
 class Blacksch(Bench):
-    sizes = {'large': 100000000, 'small': 10000000, 'tiny': 1000000, 'test': 2}
+    sizes = {'large': 1000000000, 'small': 100000000, 'tiny': 1000000, 'test': 100}
 
     def _gen_data(self, nopt):
         return (
