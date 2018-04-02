@@ -11,15 +11,15 @@ sklearn._ASSUME_FINITE = True
 if sklearn.__version__ == '0.18.2':
     sklearn.utils.validation._assert_all_finite = lambda X: None 
 
-features = [10, 50, 100, 200, 400, 800, 1000]
-vectors = [1000, 2000, 4000, 10000]
+features = [10, 50, 100, 200, 400, 800, 1000, 2000]
+vectors = [1000, 2000, 4000, 10000, 20000]
 
 class Svm(Bench):
     """
     Benchmark for Ridge Regression Prediction from Scikit-learn
     Attempts to utilize parallelism for larger datasets
     """
-    sizes = {'large': 4, 'small': 3, 'tiny': 2, 'test': 1}
+    sizes = {'large': 5, 'small': 3, 'tiny': 2, 'test': 1}
     
     def _gen_datasets(self, features, vectors, classes, dest='data'):
         """Generate classification datasets in binary .npy files
