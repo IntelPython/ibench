@@ -21,8 +21,8 @@ class Ridge(Bench):
 
     def _make_args(self, n):
         p = int(n/10)
-        self._X = rand(p,n)
-        self._y = rand(p,n)
+        self._X = rand(n,p)
+        self._y = rand(n)
         self._regr = linear_model.Ridge() 
 
     def _compute(self):

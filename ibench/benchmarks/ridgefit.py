@@ -21,8 +21,8 @@ class Ridgefit(Bench):
 
     def _make_args(self, n):
         p = int(n/10)
-        self._X = rand(p,n)
-        self._y = rand(p,n)
+        self._X = rand(n,p)
+        self._y = rand(n)
         self._regr = linear_model.Ridge()
         self._regr.fit(self._X,self._y)
 
