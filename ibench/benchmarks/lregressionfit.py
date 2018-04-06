@@ -20,8 +20,8 @@ class Lregressionfit(Bench):
 
     def _make_args(self, n):
         p = int(n/10)
-        self._X = rand(p,n)
-        self._y = rand(p,n)
+        self._X = rand(n,p)
+        self._y = rand(n)
         if n < 8000:
             self._regr = linear_model.LinearRegression()
         else:
