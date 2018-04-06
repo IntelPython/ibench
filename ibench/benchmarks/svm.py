@@ -11,12 +11,8 @@ sklearn._ASSUME_FINITE = True
 if sklearn.__version__ == '0.18.2':
     sklearn.utils.validation._assert_all_finite = lambda X: None 
 
-<<<<<<< HEAD
 features = [10, 50, 100, 200, 400, 800, 1000, 2000]
 vectors = [1000, 2000, 4000, 10000, 20000]
-=======
-features = [10, 50, 100, 200, 400, 800, 1000]
-vectors = [1000, 2000, 4000, 6000]
 >>>>>>> master
 
 class Svm(Bench):
