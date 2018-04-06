@@ -14,15 +14,15 @@ class Ridge(Bench):
     Benchmark for Ridge Regression Training from Scikit-learn
     Attempts to utilize parallelism for larger datasets
     """
-    sizes = {'large': 20000, 'small': 5000, 'tiny': 1000, 'test': 10}
+    sizes = {'large': 8000, 'small': 5000, 'tiny': 1000, 'test': 10}
 
     def _ops(self, n):
         return 2E-9 * n*n*n
 
     def _make_args(self, n):
         p = int(n/10)
-        self._X = rand(p,n)
-        self._y = rand(p,n)
+        self._X = rand(n,p)
+        self._y = rand(n)
         self._regr = linear_model.Ridge() 
 
     def _compute(self):
