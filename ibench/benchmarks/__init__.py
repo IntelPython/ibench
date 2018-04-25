@@ -15,6 +15,8 @@ from . import ridgefit
 from . import cosine
 from . import corr
 from . import svm
+from . import kmeans
+from . import kmeansfit
 
 benchmarks = {
     'cholesky': cholesky.Cholesky,
@@ -33,15 +35,17 @@ benchmarks = {
     'ridgefit':ridgefit.Ridgefit,
     'cosine':cosine.Cosine,
     'corr':corr.Corr,
-    'svm':svm.Svm
+    'svm':svm.Svm,
+    'kmeans':kmeans.Kmeans,
+    'kmeansfit':kmeansfit.Kmeansfit
 }
 
 benchmark_groups = {
     'linalg': ['cholesky', 'det', 'dot', 'inv', 'lu', 'qr', 'svd'],
     'all': list(benchmarks.keys()),
     'sklearn': ['lregression', 'lregressionfit', 'ridge', 'ridgefit',
-                'cosine','corr','svm'],
+                'cosine','corr','svm','kmeans','kmeansfit'],
     'bench2018': ['fft', 'lu', 'dot', 'cholesky', 'qr', 'blacksch',
                   'rng', 'lregression', 'lregressionfit', 'ridge',
-                  'ridgefit','cosine','corr','svm']
+                  'ridgefit','cosine','corr','svm','kmeans','kmeansfit']
 }
