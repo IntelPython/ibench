@@ -1,0 +1,27 @@
+import numpy as np
+import sklearn
+import multiprocessing
+from numpy.random import rand
+from sklearn.metrics.pairwise import pairwise_distances
+
+from .bench import Bench
+
+if sklearn.__version__ == '0.18.2':
+    sklearn.utils.validation._assert_all_finite = lambda X: None 
+
+class Cosine(Bench):
+    """
+    Benchmark for Cosine Distance from Scikit-learn
+    Attempts to utilize parallelism for larger datasets
+    """
+    sizes = {'large': 50000, 'small': 30000, 'tiny': 10000, 'test': 10}
+
+    def _ops(self, n):
+        return 2E-9 * n
+
+    def _make_args(self, n):
+        p = int(n/10)
+        self._X = rand(p,n)
+            
+    def _compute(self):
+        self._cor_dist = pairwise_distances(self._X, metric='cosine', n_jobs=-1)

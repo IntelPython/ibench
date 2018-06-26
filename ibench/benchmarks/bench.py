@@ -19,6 +19,7 @@ class Bench:
     def _run(self, n):
         self._make_args(n)
 
+        # Disable garbage collector
         gcold = gc.isenabled()
         gc.disable()
 
@@ -34,28 +35,41 @@ class Bench:
 
         return times
 
-    def measure(self, n):
+    def measure(self, n, args):
         self._log('')
         self._log('  N = %d' % n)
 
         times = self._run(n)
 
         ops = self._ops(n)
-        for elapsed in times:
-            self._log('  elapsed %f gflops %f' % (elapsed,ops/elapsed))
-                    
-        self._summarize(n, times)
+        if args.gflops is False:
+            for elapsed in times:
+                self._log('  elapsed %f' % (elapsed))
 
-    def _summarize(self, n, times):
+        else:
+            for elapsed in times:
+                self._log('  elapsed %f gflops %f' % (elapsed,ops/elapsed))
+                    
+        self._summarize(n, times, args)
+
+    def _summarize(self, n, times, args):
         t = np.asarray(times)
         median = np.median(t)
         ops = self._ops(n)
-        self._log('  gflops %f' % (ops/median))
-        self._cmd.results['runs'].append({'name': self.name,
-                                         'N': n,
-                                         'gflops': ops/median,
-                                         'ops': ops,
-                                         'times': times,
-                                         'stats': {'min': np.amin(t),  
-                                                   'max': np.max(t),  
-                                                   'median': median}})
+        if args.gflops is False:
+            self._cmd.results['runs'].append({'name': self.name,
+                                              'N': n,
+                                              'times': times,
+                                              'stats': {'min': np.amin(t),
+                                                        'max': np.max(t),
+                                                        'median': median}})
+        else:
+            self._log('  gflops %f' % (ops/median))
+            self._cmd.results['runs'].append({'name': self.name,
+                                              'N': n,
+                                              'gflops': ops/median,
+                                              'ops': ops,
+                                              'times': times,
+                                              'stats': {'min': np.amin(t),
+                                                        'max': np.max(t),
+                                                        'median': median}})

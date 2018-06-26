@@ -4,7 +4,7 @@ import scipy
 from .bench import Bench
 
 class Lu(Bench):
-    sizes = {'large': 35000, 'small': 20000, 'tiny': 5000, 'test': 2}
+    sizes = {'large': 20000, 'small': 8000, 'tiny': 5000, 'test': 2}
 
     def _ops(self, n):
         return 2./3.*n*n*n*1e-9

@@ -5,7 +5,7 @@ import scipy.fftpack
 from .bench import Bench
 
 class Fft(Bench):
-    sizes = {'large': 520000, 'small': 520000, 'tiny': 520000, 'test': 100}
+    sizes = {'large': 1000000, 'small': 1000000, 'tiny': 52000, 'test': 100}
     # If you change the value of runs, change native.cpp as well
     _runs = 1000
 

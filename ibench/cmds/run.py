@@ -41,6 +41,8 @@ def add_parser(subparsers):
                         action='store_true', 
                         help="Logging")
     parser.add_argument('--runs', default=3, type=int, help='Number of runs')
+    parser.add_argument('--gflops', default=False,
+                        help='Turn on approximate gflops for test saturation')
     parser.set_defaults(func=Run)
 
 class Run(Cmd):
@@ -54,7 +56,7 @@ class Run(Cmd):
         for bench_name in self._bmarks:
             bench = benchmarks[bench_name](self)
             n = bench.sizes[self.args.size]
-            bench.measure(n)
+            bench.measure(n, args)
             del bench
         self._write_output()
 
