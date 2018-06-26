@@ -19,7 +19,7 @@ class Bench:
     def _run(self, n):
         self._make_args(n)
 
-        # Checking on the garbage collector
+        # Disable garbage collector
         gcold = gc.isenabled()
         gc.disable()
 
