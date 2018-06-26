@@ -42,7 +42,7 @@ class Bench:
         times = self._run(n)
 
         ops = self._ops(n)
-        if 'gflops' in args:
+        if args.gflops is False:
             for elapsed in times:
                 self._log('  elapsed %f' % (elapsed))
 
@@ -56,7 +56,7 @@ class Bench:
         t = np.asarray(times)
         median = np.median(t)
         ops = self._ops(n)
-        if 'gflops' in args:
+        if args.gflops is False:
             self._cmd.results['runs'].append({'name': self.name,
                                               'N': n,
                                               'times': times,
