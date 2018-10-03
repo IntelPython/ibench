@@ -49,3 +49,9 @@ benchmark_groups = {
                   'rng', 'lregression', 'lregressionfit', 'ridge',
                   'ridgefit','cosine','corr','svm','kmeans','kmeansfit']
 }
+
+# Try to get native benchmarks
+try:
+    from .. import native
+except ImportError:
+    pass
