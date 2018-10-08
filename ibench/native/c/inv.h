@@ -1,3 +1,9 @@
+/*
+ * Copyright (C) 2016 Intel Corporation
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
 #include "bench.h"
 
 class inv_C : public Bench {

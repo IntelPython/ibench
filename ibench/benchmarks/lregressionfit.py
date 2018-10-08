@@ -1,3 +1,7 @@
+# Copyright (C) 2018 Intel Corporation
+#
+# SPDX-License-Identifier: MIT
+
 import sklearn
 import numpy as np
 import multiprocessing

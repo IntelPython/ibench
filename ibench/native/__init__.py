@@ -1,3 +1,7 @@
+# Copyright (C) 2016, 2018 Intel Corporation
+#
+# SPDX-License-Identifier: MIT
+
 # python loads libraries with RTLD_LOCAL, but MKL requires RTLD_GLOBAL
 # pre-load MKL with RTLD_GLOBAL before loading the native extension
 import ctypes

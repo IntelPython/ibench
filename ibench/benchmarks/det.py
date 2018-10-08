@@ -1,3 +1,7 @@
+# Copyright (C) 2016-2017 Intel Corporation
+#
+# SPDX-License-Identifier: MIT
+
 import numpy as np
 import scipy
 

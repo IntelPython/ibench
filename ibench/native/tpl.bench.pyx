@@ -1,3 +1,7 @@
+# Copyright (C) 2016 Intel Corporation
+#
+# SPDX-License-Identifier: MIT
+
 # distutils: language = c++
 
 from ibench.benchmarks.{{bench}} import {{Bench}}

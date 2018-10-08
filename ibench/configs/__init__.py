@@ -1,3 +1,7 @@
+# Copyright (C) 2016 Intel Corporation
+#
+# SPDX-License-Identifier: MIT
+
 from . import conda_py2
 from . import direct
 from . import idp201700
