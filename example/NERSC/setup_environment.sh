@@ -1,3 +1,7 @@
+# Copyright (C) 2016-2018 Intel Corporation
+#
+# SPDX-License-Identifier: MIT
+
 # set up script on NERSC Cori machine 
 module load python/3.5-anaconda
 if [[ ! -d $HOME/.conda ]]; then

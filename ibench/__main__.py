@@ -1,3 +1,7 @@
+# Copyright (C) 2016-2018 Intel Corporation
+#
+# SPDX-License-Identifier: MIT
+
 import argparse
 import os
 import sys

@@ -1,3 +1,7 @@
+# Copyright (C) 2016 Intel Corporation
+#
+# SPDX-License-Identifier: MIT
+
 {% if os_name == "centos" %}
 
 {% elif os_name == "ubuntu" %}

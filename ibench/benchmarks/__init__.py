@@ -1,3 +1,7 @@
+# Copyright (C) 2016-2018 Intel Corporation
+#
+# SPDX-License-Identifier: MIT
+
 from . import cholesky
 from . import det
 from . import dot
@@ -49,3 +53,9 @@ benchmark_groups = {
                   'rng', 'lregression', 'lregressionfit', 'ridge',
                   'ridgefit','cosine','corr','svm','kmeans','kmeansfit']
 }
+
+# Try to get native benchmarks
+try:
+    from .. import native
+except ImportError:
+    pass

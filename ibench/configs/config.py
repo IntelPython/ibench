@@ -1,3 +1,7 @@
+# Copyright (C) 2016 Intel Corporation
+#
+# SPDX-License-Identifier: MIT
+
 from __future__ import print_function
 import datetime
 import os

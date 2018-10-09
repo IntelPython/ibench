@@ -1,5 +1,9 @@
 #!/bin/bash -l
 
+# Copyright (C) 2016-2018 Intel Corporation
+#
+# SPDX-License-Identifier: MIT
+
 #SBATCH -N 1               
 #SBATCH -p regular
 #SBATCH -t 00:45:00

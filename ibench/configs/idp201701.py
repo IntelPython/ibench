@@ -1,3 +1,7 @@
+# Copyright (C) 2016 Intel Corporation
+#
+# SPDX-License-Identifier: MIT
+
 from  .pip import Pip
 
 class IDP201701(Pip):
