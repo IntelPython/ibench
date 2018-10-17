@@ -31,20 +31,30 @@ python -m ibench run -b all --size large --runs 3 --file all.out
 
 ## Running benchmarks by domain
 
-### Linear algebra
+### Linear Algebra
 - To run python benchmarks: `python -m ibench run -b linalg --size large --runs 3 --file linalg.out`
 - To run native benchmarks*: `python -m ibench run -b native --size large --runs 3 --file native.out`
 
 \* Currently, native benchmarks are only available for `det`, `dot`, `lu`, and `inv`.
 
-### scikit-learn
+### Machine Learning
 - To run python benchmarks: `python -m ibench run -b sklearn --size large --runs 3 --file sklearn.out`
+- For comparable python and native benchmarks, see (scikit-learn_bench)[https://github.com/IntelPython/scikit-learn_bench].
 
-### Others
-- To run python FFT benchmark: `python -m ibench run -b fft --size large --runs 3 --file fft.out`
-- To run python RNG benchmark: `python -m ibench run -b rng --size large --runs 3 --file rng.out`
+### Fast Fourier Transforms
+- To run python benchmarks: `python -m ibench run -b fft --size large --runs 3 --file fft.out`
+- For comparable python and native benchmarks, see (fft_benchmark)[https://github.com/IntelPython/fft_benchmark].
+
+### Random Number Generation
+- To run python benchmarks: `python -m ibench run -b rng --size large --runs 3 --file rng.out`
+- For comparable python and native benchmarks, see (optimizations_bench)[https://github.com/IntelPython/optimizations_bench#random-number-generation].
+
+### Black-Scholes Formula
 - To run python Black-Scholes benchmark: `python -m ibench run -b blacksch --size large --runs 3 --file blacksch.out`
+- For comparable python and native benchmarks, see (BlackScholes_bench)[https://github.com/IntelPython/BlackScholes_bench].
 
+### UMath
+- See (optimizations_bench)[https://github.com/IntelPython/optimizations_bench#random-number-generation].
 
 ## Help
 ```bash
