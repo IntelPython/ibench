@@ -1,0 +1,193 @@
+{
+  "name": "noname",
+  "date": "2018-12-25-10-17-21",
+  "KMP_AFFINITY": "not set",
+  "OMP_NUM_THREADS": "not set",
+  "MKL_NUM_THREADS": "not set",
+  "host": "dmitryte-MOBL",
+  "lscpu": "",
+  "numactl": "",
+  "pip list": "",
+  "conda": [
+    "b'# packages in environment at C:\\\\Users\\\\dmitryte\\\\AppData\\\\Local\\\\Continuum\\\\miniconda3:\\r",
+    "#\\r",
+    "# Name                    Version                   Build  Channel\\r",
+    "appdirs                   1.4.3                     <pip>\\r",
+    "asn1crypto                0.24.0             py36_intel_1  [intel]  intel\\r",
+    "attrs                     18.2.0                    <pip>\\r",
+    "black                     18.9b0                    <pip>\\r",
+    "blas                      1.0                         mkl  \\r",
+    "bzip2                     1.0.6             vc14_intel_14  [intel vc14]  intel\\r",
+    "ca-certificates           2018.11.29           ha4d7672_0    conda-forge\\r",
+    "certifi                   2018.11.29            py36_1000    conda-forge\\r",
+    "cffi                      1.11.5             py36_intel_1  [intel]  intel\\r",
+    "chardet                   3.0.4              py36_intel_0  [intel]  intel\\r",
+    "Click                     7.0                       <pip>\\r",
+    "conda                     4.5.12                py36_1000    conda-forge\\r",
+    "conda-env                 2.6.0                h36134e3_1  \\r",
+    "console_shortcut          0.1.1                h6bb2dd7_3  \\r",
+    "cryptography              2.2.2              py36_intel_1  [intel]  intel\\r",
+    "cython                    0.29.2          py36h6538335_1000    conda-forge\\r",
+    "flake8                    3.5.0                     <pip>\\r",
+    "icc_rt                    2019.0.0             h0cc432a_1  \\r",
+    "idna                      2.6                py36_intel_0  [intel]  intel\\r",
+    "intel-openmp              2019.1                      144  \\r",
+    "intelpython               2018.0.3                      0    intel\\r",
+    "jinja2                    2.10                       py_1    conda-forge\\r",
+    "markupsafe                1.1.0           py36hfa6e2cd_1000    conda-forge\\r",
+    "mccabe                    0.6.1                     <pip>\\r",
+    "menuinst                  1.4.14           py36hfa6e2cd_0  \\r",
+    "mkl                       2018.0.3                      1  \\r",
+    "mkl_fft                   1.0.10                   py36_0    conda-forge\\r",
+    "mkl_random                1.0.2                    py36_0    conda-forge\\r",
+    "numpy                     1.15.4           py36ha559c80_0  \\r",
+    "numpy-base                1.15.4           py36h8128ebf_0  \\r",
+    "openssl                   1.0.2p            hfa6e2cd_1001    conda-forge\\r",
+    "pip                       9.0.1              py36_intel_1  [intel]  intel\\r",
+    "pycodestyle               2.3.1                     <pip>\\r",
+    "pycosat                   0.6.3            py36h413d8a4_0  \\r",
+    "pycparser                 2.18               py36_intel_0  [intel]  intel\\r",
+    "pyflakes                  1.6.0                     <pip>\\r",
+    "pyopenssl                 17.5.0             py36_intel_0  [intel]  intel\\r",
+    "pysocks                   1.6.7              py36_intel_0  [intel]  intel\\r",
+    "python                    3.6.3                  intel_12  [intel]  intel\\r",
+    "pywin32                   223              py36hfa6e2cd_1  \\r",
+    "requests                  2.18.4             py36_intel_0  [intel]  intel\\r",
+    "ruamel_yaml               0.15.37          py36hfa6e2cd_2  \\r",
+    "scikit-learn              0.20.0           py36heebcf9a_1  \\r",
+    "scipy                     1.1.0            py36h4f6bf74_1  \\r",
+    "setuptools                39.2.0                   py36_0  \\r",
+    "six                       1.10.0             py36_intel_8  [intel]  intel\\r",
+    "smp                       0.1.3                      py_2    intel\\r",
+    "sqlite                    3.23.1             vc14_intel_0  [intel vc14]  intel\\r",
+    "tbb                       2018.0.4                 vc14_0  [vc14]  intel\\r",
+    "tbb4py                    2018.0.4            py36_vc14_0  [vc14]  intel\\r",
+    "tcl                       8.6.4             vc14_intel_19  [intel vc14]  intel\\r",
+    "tk                        8.6.4             vc14_intel_27  [intel vc14]  intel\\r",
+    "toml                      0.9.6                     <pip>\\r",
+    "urllib3                   1.22               py36_intel_0  [intel]  intel\\r",
+    "vc                        14.0                          2    intel\\r",
+    "vs2015_runtime            14.0.25420              intel_0  [intel]  intel\\r",
+    "wheel                     0.31.0             py36_intel_0  [intel]  intel\\r",
+    "win_inet_pton             1.0.1              py36_intel_0  [intel]  intel\\r",
+    "wincertstore              0.2                py36_intel_0  [intel]  intel\\r",
+    "xz                        5.2.3              vc14_intel_1  [intel vc14]  intel\\r",
+    "yaml                      0.1.7                    vc14_0  [vc14]  conda-forge\\r",
+    "zlib                      1.2.11             vc14_intel_4  [intel vc14]  intel\\r",
+    "'"
+  ],
+  "runs": [
+    {
+      "name": "Cholesky",
+      "N": 2000,
+      "times": [
+        0.06251955032348633,
+        0.10942506790161133,
+        0.046843528747558594
+      ],
+      "stats": {
+        "min": 0.046843528747558594,
+        "max": 0.10942506790161133,
+        "median": 0.06251955032348633
+      }
+    },
+    {
+      "name": "Det",
+      "N": 5000,
+      "times": [
+        2.2500853538513184,
+        2.140719413757324,
+        2.3594706058502197
+      ],
+      "stats": {
+        "min": 2.140719413757324,
+        "max": 2.3594706058502197,
+        "median": 2.2500853538513184
+      }
+    },
+    {
+      "name": "Dot",
+      "N": 1000,
+      "times": [
+        0.06250739097595215,
+        0.04688715934753418,
+        0.04687213897705078
+      ],
+      "stats": {
+        "min": 0.04687213897705078,
+        "max": 0.06250739097595215,
+        "median": 0.04688715934753418
+      }
+    },
+    {
+      "name": "Inv",
+      "N": 2000,
+      "times": [
+        0.5469076633453369,
+        0.5156569480895996,
+        0.5562961101531982
+      ],
+      "stats": {
+        "min": 0.5156569480895996,
+        "max": 0.5562961101531982,
+        "median": 0.5469076633453369
+      }
+    },
+    {
+      "name": "Lu",
+      "N": 5000,
+      "times": [
+        4.936642408370972,
+        3.6279218196868896,
+        3.0313658714294434
+      ],
+      "stats": {
+        "min": 3.0313658714294434,
+        "max": 4.936642408370972,
+        "median": 3.6279218196868896
+      }
+    },
+    {
+      "name": "Qr",
+      "N": 1000,
+      "times": [
+        0.15625500679016113,
+        0.12502050399780273,
+        0.1093752384185791
+      ],
+      "stats": {
+        "min": 0.1093752384185791,
+        "max": 0.15625500679016113,
+        "median": 0.12502050399780273
+      }
+    },
+    {
+      "name": "Svd",
+      "N": 1000,
+      "times": [
+        1.2031714916229248,
+        1.3281745910644531,
+        0.9219198226928711
+      ],
+      "stats": {
+        "min": 0.9219198226928711,
+        "max": 1.3281745910644531,
+        "median": 1.2031714916229248
+      }
+    },
+    {
+      "name": "Eig",
+      "N": 1000,
+      "times": [
+        1.735610008239746,
+        1.640693187713623,
+        1.6875660419464111
+      ],
+      "stats": {
+        "min": 1.640693187713623,
+        "max": 1.735610008239746,
+        "median": 1.6875660419464111
+      }
+    }
+  ]
+}
