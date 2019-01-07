@@ -15,12 +15,14 @@ from . import det
 from . import dot
 from . import inv
 from . import lu
+from . import cholesky
 
 local_benchmarks = {
     'dot_native': dot.Dot,
     'det_native': det.Det,
     'inv_native': inv.Inv,
-    'lu_native': lu.Lu
+    'lu_native': lu.Lu,
+    'cholesky_native': cholesky.Cholesky
 }
 
 # add to the list of benchmark options
