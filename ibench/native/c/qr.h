@@ -46,11 +46,8 @@ void qr_C::compute() {
   assert(info == 0);
 
   /* numpy computes upper triangular part of A even when mode='raw' */
-#pragma omp parallel for simd
   for (int i = 0; i < n; i++) {
-    for (int j = 0; j <= i; j++) {
-      r_mat[i*n+j] = x_mat[i*n+j];
-    }
+    memcpy(&r_mat[i*n], &x_mat[i*n], (i+1) * sizeof(*r_mat));
   }
 
 }
