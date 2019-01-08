@@ -31,13 +31,13 @@ cholesky_C::make_args(int size) {
   int r_size = mat_size;
 
   /* input matrix */
-  x_mat = make_mat(mat_size);
+  x_mat = make_random_mat(mat_size);
 
   /* matrix for result */
   r_mat = make_mat(r_size);
   memset(r_mat, 0, r_size * sizeof(*r_mat));
   // Set r_mat to identity matrix as in python bench
-  for (unsigned i = 0; i < n; i++) r_mat[i*i] = 1;
+  for (int i = 0; i < n; i++) r_mat[i*i] = 1;
   cblas_dsyrk(CblasColMajor, CblasUpper, CblasNoTrans, n, n, 1.0, x_mat, lda, n, r_mat, lda);
 
   // we now have r_mat = x_mat * x_mat' + n * np.eye(n)
