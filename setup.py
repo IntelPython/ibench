@@ -40,7 +40,7 @@ def build_native():
                          extra_link_args=extra_args,
                          sources=['pyx/%s.pyx' % name])
 
-    return cythonize([make_bench(i) for i in ['det', 'dot', 'inv', 'lu']])
+    return cythonize([make_bench(i) for i in ['det', 'dot', 'inv', 'lu', 'cholesky', 'qr']])
 
 
 packages = ['ibench','ibench/docker','ibench/cmds','ibench/configs','ibench/benchmarks']

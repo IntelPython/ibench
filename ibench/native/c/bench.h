@@ -75,6 +75,5 @@ class Bench {
     return mat;
   }
 
-
   virtual void compute()=0;
 };

@@ -53,7 +53,7 @@ class Bench:
         else:
             for elapsed in times:
                 self._log('  elapsed %f gflops %f' % (elapsed,ops/elapsed))
-                    
+
         self._summarize(n, times, args)
 
     def _summarize(self, n, times, args):
