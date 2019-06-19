@@ -5,6 +5,7 @@
 from __future__ import print_function
 
 import argparse
+import csv
 import datetime
 import json
 import os
@@ -19,7 +20,8 @@ from .cmd import Cmd
 
 def capture_multiline_output(command):
     try:
-        return str(subprocess.check_output(command,shell=True,stderr=subprocess.STDOUT)).split('\\n')
+        return subprocess.check_output(command, shell=True,
+                                       stderr=subprocess.STDOUT).decode().split('\n')
     except:
         return ''
 
@@ -47,6 +49,14 @@ def add_parser(subparsers):
     parser.add_argument('--runs', default=3, type=int, help='Number of runs')
     parser.add_argument('--gflops', default=False,
                         help='Turn on approximate gflops for test saturation')
+    parser.add_argument('--no-get-env-info', dest='get_env_info',
+                        action='store_false', default=True,
+                        help='Skip getting environment information')
+    parser.add_argument('-f', '--format', choices=['json', 'csv'],
+                        default='json', help='Output format')
+    parser.add_argument('--env-info-prefix', default='@',
+                        help='Character to put in front of each line of env '
+                             'info when using csv output')
     parser.set_defaults(func=Run)
 
 class Run(Cmd):
@@ -94,16 +104,48 @@ class Run(Cmd):
         self._set_from_environ('KMP_AFFINITY')
         self._set_from_environ('OMP_NUM_THREADS')
         self._set_from_environ('MKL_NUM_THREADS')
-        results['host'] = platform.node()
-        results['lscpu'] = capture_multiline_output('lscpu')
-        results['numactl'] = capture_multiline_output('numactl --show')
-        results['pip list'] = capture_multiline_output('/usr/bin/pip list')
-        results['conda'] = capture_multiline_output('conda list')
+
+        if self.args.get_env_info:
+            results['host'] = platform.node()
+            results['lscpu'] = capture_multiline_output('lscpu')
+            results['numactl'] = capture_multiline_output('numactl --show')
+            results['pip list'] = capture_multiline_output('/usr/bin/pip list')
+            results['conda'] = capture_multiline_output('conda list')
+
         results['runs'] = []
 
     def _write_output(self):
         filename = self.args.file
         fh = open(filename, 'w') if filename else sys.stdout
-        json.dump(self.results,fh,indent=2)
+
+        if self.args.format == 'json':
+            json.dump(self.results, fh, indent=2)
+        elif self.args.format == 'csv':
+            for env_key in self.results.keys() - {'name', 'date', 'runs'}:
+
+                # Output environment information in an easily cleanable way
+                # We will prefix each line with something like "@ "
+                env_prefix = self.args.env_info_prefix
+
+                env_info = self.results[env_key]
+                if type(env_info) is str:
+                    fh.write('{0}{0} {1}={2}\n'.format(env_prefix, env_key, env_info))
+                else:
+                    fh.write('{0}{0} {1}=\n'.format(env_prefix, env_key))
+                    for line in [env_key + ":"] + env_info:
+                        fh.write('{0} {1}\n'.format(env_prefix, line))
+
+            # Now, for the actual CSV output...
+            writer = csv.writer(fh, delimiter=',')
+            writer.writerow(['Prefix', 'Function', 'Size', 'Time'])
+
+            all_runs_output = [self.results['name']]
+
+            for bench in self.results['runs']:
+                bench_output = all_runs_output + [bench['name'], bench['N']]
+                for time in bench['times']:
+                    time_output = bench_output + [time]
+                    writer.writerow(time_output)
+
         if filename:
             fh.close()
