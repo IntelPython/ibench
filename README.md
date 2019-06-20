@@ -29,6 +29,15 @@ python -m ibench run -b all --size large --runs 3 --file all.out
 - To specify the problem size, use the `--size` option. This selects
   from a list of predefined problem sizes.
 
+### Configuring output
+ibench supports both JSON (default) and CSV output with collection of
+environment information. When using CSV format, ibench will prefix each
+line of environment information with a comment character (default `@`).
+Use the following arguments to the `run` subparser to configure its output:
+- `-f,--format FORMAT` - use the specified format (`json` or `csv`)
+- `--no-get-env-info` - don't collect environment or machine info
+- `--env-info-prefix` - prefix character to use before environment info
+
 ## Running benchmarks by domain
 
 ### Linear Algebra
