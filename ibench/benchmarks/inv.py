@@ -23,4 +23,7 @@ class Inv(Bench):
         self._A = np.asfortranarray(np.random.rand(n,n), dtype=self._dtype)
 
     def _compute(self):
+        # yes, we overwrite the input here without refreshing it,
+        # but because (A**-1)**-1 = A, there shouldn't be any big problems
+        # w.r.t. early termination of inverse
         scipy.linalg.inv(self._A, overwrite_a=True, check_finite=False)

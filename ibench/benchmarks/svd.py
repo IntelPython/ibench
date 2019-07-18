@@ -18,4 +18,6 @@ class Svd(Bench):
         self._A = np.asfortranarray(np.random.rand(n, n), dtype=self._dtype)
 
     def _compute(self):
-        scipy.linalg.svd(self._A, overwrite_a=True, check_finite=False)
+        # We specify overwrite_a=False here because once the input array
+        # is overwritten, dgesdd might decide to terminate early
+        scipy.linalg.svd(self._A, overwrite_a=False, check_finite=False)
