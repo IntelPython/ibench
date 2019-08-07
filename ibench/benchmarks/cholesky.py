@@ -18,4 +18,5 @@ class Cholesky(Bench):
         self._A = np.asfortranarray(self._A*self._A.transpose() + n*np.eye(n))
 
     def _compute(self):
-        scipy.linalg.cholesky(self._A, lower=False, overwrite_a=True, check_finite=False)
+        scipy.linalg.cholesky(self._A, lower=False, overwrite_a=False,
+                              check_finite=False)
