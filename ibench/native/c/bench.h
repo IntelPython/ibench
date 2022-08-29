@@ -12,7 +12,7 @@ using namespace std;
 #include "assert.h"
 #include "stdlib.h"
 
-#if defined(__INTEL_COMPILER)
+#if defined(__INTEL_LLVM_COMPILER)
 
 #include "mkl.h"
 
