@@ -18,7 +18,7 @@ def build_native():
         print('Using icc: %s' % icc)
         os.environ['CC'] = icc
         os.environ['CXX'] = os.environ['CC']
-        extra_args = ['-mkl']
+        extra_args = ['-qmkl']
 
     if not 'CXX' in os.environ:
         print('icc not detected, and CXX is not set. Skipping building native benchmarks.')
