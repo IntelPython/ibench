@@ -19,7 +19,7 @@ using namespace std;
 class Random{
  private:
   enum {SEED = 77777};
-  static double const d_zero = 0.0, d_one = 1.0;
+  static constexpr double const d_zero = 0.0, d_one = 1.0;
   VSLStreamStatePtr stream;
 
  public:
