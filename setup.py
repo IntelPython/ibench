@@ -9,19 +9,19 @@ from setuptools import setup
 def build_native():
     '''Return cythonized extensions for native benchmarks'''
     try:
-        # use icc if it is available
-        icc = subprocess.check_output('which icc',shell=True).decode('utf-8')
+        # use icx if it is available
+        icx = subprocess.check_output('which icx',shell=True).decode('utf-8')
     except:
-        icc = None
+        icx = None
         extra_args = []
     else:
-        print('Using icc: %s' % icc)
-        os.environ['CC'] = icc
+        print('Using icx: %s' % icx)
+        os.environ['CC'] = icx
         os.environ['CXX'] = os.environ['CC']
         extra_args = ['-qmkl']
 
     if not 'CXX' in os.environ:
-        print('icc not detected, and CXX is not set. Skipping building native benchmarks.')
+        print('icx not detected, and CXX is not set. Skipping building native benchmarks.')
         print('If you want to build native benchmarks, specify a compiler in the CXX '
               'environment variable.')
         return
