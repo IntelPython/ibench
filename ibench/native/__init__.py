@@ -19,12 +19,12 @@ from . import cholesky
 from . import qr
 
 local_benchmarks = {
-    'dot_native': dot.Dot,
-    'det_native': det.Det,
-    'inv_native': inv.Inv,
-    'lu_native': lu.Lu,
-    'cholesky_native': cholesky.Cholesky,
-    'qr_native': qr.Qr
+    'dot_native': dot.Dot_native,
+    'det_native': det.Det_native,
+    'inv_native': inv.Inv_native,
+    'lu_native': lu.Lu_native,
+    'cholesky_native': cholesky.Cholesky_native,
+    'qr_native': qr.Qr_native
 }
 
 # add to the list of benchmark options
