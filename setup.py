@@ -10,18 +10,18 @@ def build_native():
     '''Return cythonized extensions for native benchmarks'''
     try:
         # use icx if it is available
-        icx = subprocess.check_output('which icx',shell=True).decode('utf-8')
+        icpx = subprocess.check_output('which icpx',shell=True).decode('utf-8')
     except:
-        icx = None
+        icpx = None
         extra_args = []
     else:
-        print('Using icx: %s' % icx)
-        os.environ['CC'] = icx
+        print('Using icpx: %s' % icpx)
+        os.environ['CC'] = icpx
         os.environ['CXX'] = os.environ['CC']
         extra_args = ['-qmkl']
 
     if not 'CXX' in os.environ:
-        print('icx not detected, and CXX is not set. Skipping building native benchmarks.')
+        print('icpx not detected, and CXX is not set. Skipping building native benchmarks.')
         print('If you want to build native benchmarks, specify a compiler in the CXX '
               'environment variable.')
         return
