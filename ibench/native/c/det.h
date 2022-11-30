@@ -48,7 +48,7 @@ det_C::make_args(int size) {
 
 void det_C::compute() {
   /* compute pivoted lu decomposition */
-  int info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR, m, n, r_mat, lda, ipiv);
+  int info = LAPACKE_dgetrf(LAPACK_COL_MAJOR, m, n, r_mat, lda, ipiv);
   assert(info == 0);
 
   double t = 1.0;
