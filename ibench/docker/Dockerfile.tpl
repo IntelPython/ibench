@@ -69,7 +69,7 @@ MAINTAINER Robert Cohn <Robert.S.Cohn@intel.com>
 LABEL org.label-schema.build-date="{{build_date}}" \
       org.label-schema.name="IDP Python benchmarking container" \
       org.label-schema.description="Container used for benchmarking scipy stack and related components" \
-      org.label-schema.url="https://software.intel.com/en-us/intel-distribution-for-python" \
+      org.label-schema.url="https://www.intel.com/content/www/us/en/developer/tools/oneapi/distribution-for-python.html" \
       org.label-schema.vcs-ref="{{vcs_ref}}" \
       org.label-schema.vcs-url="https://github.com/rscohn2/IDP-bench-docker" \
       org.label-schema.vendor="Intel" \
