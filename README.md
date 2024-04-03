@@ -1,6 +1,6 @@
 # ibench
 
-Benchmarks for Intel Distribution for Python
+Benchmarks for Intel Distribution for Python.
 
 ## Install
 ```bash
