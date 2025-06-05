@@ -25,7 +25,7 @@ python -m ibench run -b all --size large --runs 3 --file all.out
 ### Specifying benchmarks
 - To run one or multiple benchmarks, pass the `-b BENCHMARKS...` option.
   Benchmarks can be specified individually, or in predefined groups
-  (e.g. `native` contains all native benchmarks)
+  (e.g. `native` contains all native benchmarks).
 - To specify the problem size, use the `--size` option. This selects
   from a list of predefined problem sizes.
 
